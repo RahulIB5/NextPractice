@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ErrorWrapper } from "./error-wrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <header className="p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md">
+          <nav>
+            <h1 className="text-2xl font-bold hover:text-slate-200 transition-colors">My Website</h1>
+          </nav>
+        </header>
+        {<main className="min-h-screen">
+          <ErrorWrapper>
+              {children}
+          </ErrorWrapper>
+        </main>}
+        <footer className="p-8 bg-gradient-to-r from-slate-800 to-slate-900 text-white mt-auto border-t border-slate-700">
+          <p className="text-center text-sm font-light tracking-wider hover:text-slate-300 transition-colors">&copy; 2024 My Website. All rights reserved.</p>
+        </footer>
       </body>
     </html>
   );
